@@ -2,6 +2,8 @@ package com.epam.mjc;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringSplitter {
 
@@ -13,6 +15,9 @@ public class StringSplitter {
      * @return List of substrings
      */
     public List<String> splitByDelimiters(String source, Collection<String> delimiters) {
-        throw new UnsupportedOperationException("You should implement this method.");
+
+        return Pattern.compile(delimiters.toString())
+                .splitAsStream(source).collect(Collectors.toList())
+                .stream().filter(i->!i.equals("")).collect(Collectors.toList());
     }
 }
